@@ -3,6 +3,7 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   popular: [],
   related: [],
+  searched: [],
   selected: {},
   term: "",
 };
@@ -18,6 +19,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         related: action.payload.related,
+      };
+    case "SET_SEARCHED":
+      return {
+        ...state,
+        searched: action.payload.searched,
       };
     case "SET_SELECTED":
       return {
