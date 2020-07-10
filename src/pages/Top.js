@@ -16,7 +16,7 @@ const Top = () => {
         payload: { popular: res.data.items },
       });
     })();
-  }, []);
+  }, [setGlobalState]);
 
   return (
     <Layout>
