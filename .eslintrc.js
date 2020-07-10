@@ -25,6 +25,7 @@ module.exports = {
     "no-var": "error",
     "prefer-const": "error",
     quotes: ["warn", "double"],
+    "react/prop-types": 0,
     "prettier/prettier": [
       "error",
       {
