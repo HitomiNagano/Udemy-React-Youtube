@@ -18,8 +18,8 @@ const Search = () => {
       setGlobalState({
         type: "SET_SEARCHED",
         payload: {
-          searched: res.data.item
-        }
+          searched: res.data.item,
+        },
       })
     }
   }, [location.search, setGlobalState])
@@ -31,16 +31,20 @@ const Search = () => {
   return (
     <Layout>
       <VideoGrid>
-        {globalState.searched ? globalState.searched.map((search) => {
-          return (
-            <VideoGridItem
-              id={search.id.videoId}
-              key={search.id.videoId}
-              src={search.snippet.thumbnails.medium.url}
-              title={search.snippet.title}
-            />
-          )
-        }): <span>no data</span>}
+        {globalState.searched ? (
+          globalState.searched.map((search) => {
+            return (
+              <VideoGridItem
+                id={search.id.videoId}
+                key={search.id.videoId}
+                src={search.snippet.thumbnails.medium.url}
+                title={search.snippet.title}
+              />
+            )
+          })
+        ) : (
+          <span>no data</span>
+        )}
       </VideoGrid>
     </Layout>
   )

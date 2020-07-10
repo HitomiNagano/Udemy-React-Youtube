@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import Style from "./Header.module.scss";
+import React, { useState, useContext, useEffect } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom"
+import Style from "./Header.module.scss"
 import { useHistory } from "react-router-dom"
 import { Store } from "../../store"
 
@@ -15,7 +15,7 @@ const Header = () => {
     e.preventDefault()
     setGlobalState({
       type: "SET_TERM",
-      payload: { term }
+      payload: { term },
     })
     history.push(`/search?query=${term}`)
   }
@@ -43,7 +43,7 @@ const Header = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

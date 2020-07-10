@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "axios"
 import { KEY, apiURL } from "../config"
 
 const youtube = axios.create({
   baseURL: apiURL,
-});
+})
 
 const params = {
   part: "snippet",
@@ -19,16 +19,15 @@ export const fetchPopularData = async () => {
       ...params,
       chart: "mostPopular",
     },
-  });
-};
-
+  })
+}
 
 export const fetchSelectedData = async (id) => {
   return await youtube.get("videos", {
     params: {
       ...params,
       id,
-    }
+    },
   })
 }
 
@@ -37,7 +36,7 @@ export const fetchRelatedData = async (id) => {
     params: {
       ...params,
       relatedToVideoId: id,
-    }
+    },
   })
 }
 
@@ -45,7 +44,7 @@ export const fetchSearchData = async (query) => {
   return await youtube.get("/search", {
     params: {
       ...params,
-      q: query
-    }
+      q: query,
+    },
   })
 }

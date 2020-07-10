@@ -1,22 +1,22 @@
-import React, { useEffect, useContext } from "react";
-import Layout from "../components/Layout/Layout";
-import { fetchPopularData } from "../apis";
-import { Store } from "../store";
-import VideoGrid from "../components/VideoGrid/VideoGrid";
-import VideoGridItem from "../components/VideoGridItem/VideoGridItem";
+import React, { useEffect, useContext } from "react"
+import Layout from "../components/Layout/Layout"
+import { fetchPopularData } from "../apis"
+import { Store } from "../store"
+import VideoGrid from "../components/VideoGrid/VideoGrid"
+import VideoGridItem from "../components/VideoGridItem/VideoGridItem"
 
 const Top = () => {
-  const { globalState, setGlobalState } = useContext(Store);
+  const { globalState, setGlobalState } = useContext(Store)
 
   useEffect(() => {
-    (async () => {
-      const res = await fetchPopularData();
+    ;(async () => {
+      const res = await fetchPopularData()
       setGlobalState({
         type: "SET_POPULAR",
         payload: { popular: res.data.items },
-      });
-    })();
-  }, [setGlobalState]);
+      })
+    })()
+  }, [setGlobalState])
 
   return (
     <Layout>
@@ -30,11 +30,11 @@ const Top = () => {
                 src={popular.snippet.thumbnails.standard.url}
                 title={popular.snippet.title}
               />
-            );
+            )
           })}
       </VideoGrid>
     </Layout>
-  );
-};
+  )
+}
 
-export default Top;
+export default Top

@@ -14,18 +14,21 @@ const Watch = () => {
     const searchParams = new URLSearchParams(location.search)
     const id = searchParams.get("v")
     if (id) {
-      const [selected, related] = await Promise.all([fetchSelectedData(id), fetchRelatedData(id)])
+      const [selected, related] = await Promise.all([
+        fetchSelectedData(id),
+        fetchRelatedData(id),
+      ])
       setGlobalState({
         type: "SET_RELATED",
         payload: {
-          selected: selected.data.items.shift()
-        }
+          selected: selected.data.items.shift(),
+        },
       })
       setGlobalState({
         type: "SET_RELATED",
         payload: {
-          related: related.data.items
-        }
+          related: related.data.items,
+        },
       })
     }
   }, [location.search, setGlobalState])

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Store } from "../../store";
-import VideoPlay from "../VideoPlay/VideoPlay";
-import Style from "./VideoDetail.module.scss";
-import Linkify from "react-linkify";
+import React, { useContext } from "react"
+import { Store } from "../../store"
+import VideoPlay from "../VideoPlay/VideoPlay"
+import Style from "./VideoDetail.module.scss"
+import Linkify from "react-linkify"
 
 const VideoDetail = () => {
-  const { globalState } = useContext(Store);
+  const { globalState } = useContext(Store)
 
   return globalState.selected && globalState.selected.id ? (
     <div className={Style.wrap}>
@@ -18,7 +18,7 @@ const VideoDetail = () => {
     </div>
   ) : (
     <span>no data</span>
-  );
-};
+  )
+}
 
-export default VideoDetail;
+export default VideoDetail
