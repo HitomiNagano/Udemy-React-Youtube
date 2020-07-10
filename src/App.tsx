@@ -1,10 +1,10 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import Top from "./pages/Top"
-import Search from "./pages/Search"
-import Watch from "./pages/Watch"
+import Top from "src/pages/Top"
+import Search from "src/pages/Search"
+import Watch from "src/pages/Watch"
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Switch>

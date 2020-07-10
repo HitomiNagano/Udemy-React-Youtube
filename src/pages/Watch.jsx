@@ -19,7 +19,7 @@ const Watch = () => {
         fetchRelatedData(id),
       ])
       setGlobalState({
-        type: "SET_RELATED",
+        type: "SET_SELECTED",
         payload: {
           selected: selected.data.items.shift(),
         },
