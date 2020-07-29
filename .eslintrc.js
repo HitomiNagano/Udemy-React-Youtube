@@ -5,11 +5,12 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier/react",
-    "prettier/standard",
+    // "prettier/standard",
     "prettier/@typescript-eslint",
   ],
   parser: "@typescript-eslint/parser",
@@ -33,6 +34,14 @@ module.exports = {
         semi: false,
         trailingComma: "es5",
       },
-    ],
+    ]
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }
