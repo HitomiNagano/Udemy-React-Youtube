@@ -1,15 +1,15 @@
-import React, { useContext } from "react"
-import { Store } from "../../store"
-import SideListItem from "../SideListItem/SideListItem"
+import React from "react"
+import SideListItem from "src/components/SideListItem/SideListItem"
 import Style from "./SideList.module.scss"
+import { useGlobalState } from "src/store"
 
-const SideList = () => {
-  const { globalState } = useContext(Store)
+const SideList: React.FC = () => {
+  const globalState = useGlobalState("related")
 
   return (
     <div className={Style.sidenav}>
-      {globalState.related ? (
-        globalState.related.map((video) => {
+      {globalState ? (
+        globalState.map((video) => {
           return (
             <SideListItem
               id={video.id.videoId}

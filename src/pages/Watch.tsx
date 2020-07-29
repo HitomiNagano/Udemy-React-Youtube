@@ -1,13 +1,14 @@
-import React, { useEffect, useContext, useCallback } from "react"
-import Layout from "../components/Layout/Layout"
-import VideoDetail from "../components/VideoDetail/VideoDetail"
-import SideList from "../components/SideList/SideList"
-import { Store } from "../store"
+import React, { useEffect, useCallback } from "react"
 import { useLocation } from "react-router-dom"
-import { fetchSelectedData, fetchRelatedData } from "../apis"
+import Layout from "src/components/Layout/Layout"
+import VideoDetail from "src/components/VideoDetail/VideoDetail"
+import SideList from "src/components/SideList/SideList"
+import { fetchSelectedData, fetchRelatedData } from "src/apis"
+import { useDispatch } from "src/store"
+import { ActionType } from "src/store/types"
 
-const Watch = () => {
-  const { setGlobalState } = useContext(Store)
+const Watch: React.FC = () => {
+  const setGlobalState = useDispatch()
   const location = useLocation()
 
   const setVideos = useCallback(async () => {
@@ -19,13 +20,13 @@ const Watch = () => {
         fetchRelatedData(id),
       ])
       setGlobalState({
-        type: "SET_SELECTED",
+        type: ActionType.SET_SELECTED,
         payload: {
           selected: selected.data.items.shift(),
         },
       })
       setGlobalState({
-        type: "SET_RELATED",
+        type: ActionType.SET_RELATED,
         payload: {
           related: related.data.items,
         },

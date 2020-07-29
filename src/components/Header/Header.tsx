@@ -1,28 +1,30 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import Style from "./Header.module.scss"
 import { useHistory } from "react-router-dom"
-import { Store } from "../../store"
+import { useGlobalState, useDispatch } from "src/store"
+import { ActionType } from "src/store/types"
 
-const Header = () => {
+const Header: React.FC = () => {
   const [term, setTerm] = useState("")
   const history = useHistory()
-  const { globalState, setGlobalState } = useContext(Store)
+  const globalState = useGlobalState("term")
+  const setGlobalState = useDispatch()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setGlobalState({
-      type: "SET_TERM",
+      type: ActionType.SET_TERM,
       payload: { term },
     })
     history.push(`/search?query=${term}`)
   }
 
   useEffect(() => {
-    setTerm(globalState.term)
-  }, [globalState.term])
+    setTerm(globalState)
+  }, [globalState])
 
   return (
     <div className={Style.header}>

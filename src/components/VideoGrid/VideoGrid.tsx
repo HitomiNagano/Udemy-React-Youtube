@@ -1,7 +1,7 @@
 import React from "react"
 import Style from "./VideoGrid.module.scss"
 
-const VideoGrid = ({ children }) => {
+const VideoGrid: React.FC = ({ children }) => {
   return <div className={Style.continer}>{children}</div>
 }
 

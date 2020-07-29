@@ -1,14 +1,16 @@
-import React, { useEffect, useCallback, useContext } from "react"
-import Layout from "../components/Layout/Layout"
+import React, { useEffect, useCallback } from "react"
+import Layout from "src/components/Layout/Layout"
 import { useLocation } from "react-router-dom"
-import { fetchSearchData } from "../apis"
-import { Store } from "../store"
-import VideoGrid from "../components/VideoGrid/VideoGrid"
-import VideoGridItem from "../components/VideoGridItem/VideoGridItem"
+import { fetchSearchData } from "src/apis"
+import { ActionType } from "src/store/types"
+import VideoGrid from "src/components/VideoGrid/VideoGrid"
+import VideoGridItem from "src/components/VideoGridItem/VideoGridItem"
+import { useGlobalState, useDispatch } from "src/store"
 
-const Search = () => {
+const Search: React.FC = () => {
   const location = useLocation()
-  const { globalState, setGlobalState } = useContext(Store)
+  const globalState = useGlobalState("searched")
+  const setGlobalState = useDispatch()
 
   const setSearchResult = useCallback(async () => {
     const searchParams = new URLSearchParams(location.search)
@@ -16,7 +18,7 @@ const Search = () => {
     if (query) {
       const res = await fetchSearchData(query)
       setGlobalState({
-        type: "SET_SEARCHED",
+        type: ActionType.SET_SEARCHED,
         payload: {
           searched: res.data.item,
         },
@@ -31,8 +33,8 @@ const Search = () => {
   return (
     <Layout>
       <VideoGrid>
-        {globalState.searched ? (
-          globalState.searched.map((search) => {
+        {globalState ? (
+          globalState.map((search) => {
             return (
               <VideoGridItem
                 id={search.id.videoId}
